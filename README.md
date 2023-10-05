@@ -131,7 +131,7 @@ cv.line(img_res, [0, int(b2)], [3000, int((3000 * a2) + b2)], (255, 1, 1), 5)
 - Matplotlib (pyplot)
 - SciPy (SciPy.optimize)
 
-## Struggles/Solution
+## Struggles/Solutions
 
 **Issue:** Initially, the code had difficulty with the formula for drawing the best-fit lines for the left and right sides of the screen. It wasn't properly accounting for the orientation and placement of the lines.
 
