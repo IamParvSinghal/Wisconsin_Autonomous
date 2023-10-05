@@ -8,7 +8,7 @@ The algorithm employed in this project is inspired by [razimgit's project](https
 
 ### 1. Load and Prepare the Image
 
-We begin by loading an image and converting it to both RGB and HSV color spaces. This step is crucial as it forms the basis for further analysis.
+I began by loading an image and converting it to both RGB and HSV color spaces. This step was crucial as it formed the basis for further analysis.
 
 ```
 import cv2 as cv
@@ -23,7 +23,7 @@ img_hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 
 ### 2. Color Thresholding
 
-To identify red traffic cones, we define HSV color thresholds that isolate pixels with the approximate color of red cones. We then apply morphological operations to refine the thresholded image and improve its quality.
+To identify red traffic cones, I defined HSV color thresholds that isolated pixels with the approximate color of red cones. I then applied morphological operations to refine the thresholded image and improved its quality.
 
 ```
 # Define color thresholds
@@ -43,7 +43,7 @@ img_thresh_blurred = cv.medianBlur(img_thresh_opened, 5)
 
 ### 3. Edge Detection and Contours
 
-We employ the Canny edge detection algorithm to detect edges in the refined image. Subsequently, we find contours in the edge-detected image and simplify them using the Douglas-Peucker algorithm.
+I employed the Canny edge detection algorithm to detect edges in the refined image. Subsequently, I found contours in the edge-detected image and simplified them using the Douglas-Peucker algorithm.
 
 ```
 # Use Canny edge detection to find edges
@@ -61,7 +61,7 @@ for c in contours:
 
 ### 4. Identifying Upward-Pointing Cones
 
-We have a function that checks if a convex hull represents an upward-pointing cone based on bounding rectangles. This function filters out the upward-pointing cones from the rest.
+I had a function that checked if a convex hull represented an upward-pointing cone based on bounding rectangles. This function filtered out the upward-pointing cones from the rest.
 
 ```
 def convex_hull_pointing_up(ch: np.ndarray) -> bool:
@@ -88,7 +88,7 @@ def convex_hull_pointing_up(ch: np.ndarray) -> bool:
 
 ### 5. Highlighting Cones
 
-We draw rectangles around the identified cones, effectively highlighting them on the original image.
+I drew rectangles around the identified cones, effectively highlighting them on the original image.
 
 ```
 # Highlight identified cones by drawing rectangles
@@ -99,7 +99,7 @@ for rect in bounding_rects:
 
 ### 6. Lane Finding
 
-To estimate the lanes, we fit best-fit lines to the left and right sides of the screen using the least-squares method.
+To estimate the lanes, I fit best-fit lines to the left and right sides of the screen using the least-squares method.
 
 ```
 # Fit best-fit lines to the left and right sides of the screen
@@ -130,4 +130,10 @@ cv.line(img_res, [0, int(b2)], [3000, int((3000 * a2) + b2)], (255, 1, 1), 5)
 - NumPy (np)
 - Matplotlib (pyplot)
 - SciPy (SciPy.optimize)
+
+## Struggles/Solution
+
+**Issue:** Initially, the code had difficulty with the formula for drawing the best-fit lines for the left and right sides of the screen. It wasn't properly accounting for the orientation and placement of the lines.
+
+**Solution:** To address this issue, I reviewed the code responsible for fitting the best-fit lines. I then realized that it was necessary to consider the orientation and placement of the lines relative to the image dimensions. By adjusting the parameters in the line-drawing code, I successfully drew the best-fit lines to represent the estimated lanes accurately.
 
