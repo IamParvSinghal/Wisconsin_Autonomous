@@ -1,6 +1,6 @@
 # Cone Detection and Lane Finding Using Computer Vision
 
-This repository contains Python code that detects and highlights red traffic cones in an image while also finding the best-fit lines for the left and right sides of the detected cones. This project is particularly useful for applications in computer vision and robotics where the identification of objects like traffic cones is essential.
+This repository contains Python code that detects red traffic cones in an image and finds the best-fit lines for the left and right sides of the detected cones. This project is particularly useful for applications in computer vision and robotics where the identification of objects like traffic cones is essential.
 
 ## Methodology
 
